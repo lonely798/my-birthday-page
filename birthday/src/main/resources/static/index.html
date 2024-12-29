@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>生日祝福动态计时器</title>
+    <style>
+        body {
+            background-color: #0d1425;
+            color: #f3c6ac;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .countdown {
+            font-size: 2.5em;
+            line-height: 1.2;
+        }
+    </style>
+</head>
+<body>
+
+<div class="countdown" id="countdown">
+    <p>你已经来到这个世界：</p>
+    <p id="time">8073天22小时13分45秒了</p>
+    <p>这是一个特别的生日祝福！</p>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const timeElement = document.getElementById('time');
+        const birthDate = new Date(2000, 0, 1); // 假设出生日期是2000年1月1日
+
+        function updateCountdown() {
+            const now = new Date();
+            const diff = now - birthDate;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            timeElement.textContent = `${days}天${hours}小时${minutes}分${seconds}秒了`;
+        }
+
+        // 更新计时器
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // 立即更新一次
+    });
+</script>
+
+</body>
+</html>
